@@ -72,18 +72,25 @@
     }
 
     .plan-card select {
-      padding: 10px;
+      padding: 12px 20px;
       border-radius: 8px;
       background-color: #007bff;
       color: white;
       font-size: 1rem;
       border: none;
+      width: 100%;
       cursor: pointer;
       transition: background-color 0.3s ease;
+      margin-top: 10px;
     }
 
     .plan-card select:hover {
       background-color: #0056b3;
+    }
+
+    .plan-card select:focus {
+      outline: none;
+      border: 2px solid #00c2ed;
     }
 
     @media (max-width: 600px) {
