@@ -72,28 +72,17 @@
     }
 
     .plan-card select {
-      background-color: #333;
-      color: #fff;
       padding: 10px;
       border-radius: 8px;
-      border: none;
-      font-size: 1rem;
-      margin-bottom: 15px;
-      width: 100%;
-    }
-
-    .plan-card a {
-      display: inline-block;
-      padding: 10px 20px;
       background-color: #007bff;
       color: white;
-      border-radius: 8px;
-      text-decoration: none;
       font-size: 1rem;
+      border: none;
+      cursor: pointer;
       transition: background-color 0.3s ease;
     }
 
-    .plan-card a:hover {
+    .plan-card select:hover {
       background-color: #0056b3;
     }
 
@@ -121,11 +110,11 @@
         <h2>Starter</h2>
         <p><strong>RAM:</strong> 256 MB<br><strong>CPU:</strong> 20%<br><strong>Storage:</strong> 1024 MB</p>
         <p><strong>Weekly:</strong> $1.50<br><strong>Monthly:</strong> $6</p>
-        <select id="starter-plan-duration">
-          <option value="Weekly">Weekly - $1.50</option>
-          <option value="Monthly">Monthly - $6</option>
+        <select onchange="goToPaymentPage('Starter', this.value)">
+          <option value="">Select Duration</option>
+          <option value="Weekly">Buy Weekly</option>
+          <option value="Monthly">Buy Monthly</option>
         </select>
-        <a href="#" onclick="goToPaymentPage('Starter')">Buy</a>
       </div>
 
       <!-- Starter+ Plan -->
@@ -133,11 +122,11 @@
         <h2>Starter+</h2>
         <p><strong>RAM:</strong> 512 MB<br><strong>CPU:</strong> 25%<br><strong>Storage:</strong> 2048 MB</p>
         <p><strong>Weekly:</strong> $3.50<br><strong>Monthly:</strong> $14</p>
-        <select id="starter-plus-plan-duration">
-          <option value="Weekly">Weekly - $3.50</option>
-          <option value="Monthly">Monthly - $14</option>
+        <select onchange="goToPaymentPage('Starter+', this.value)">
+          <option value="">Select Duration</option>
+          <option value="Weekly">Buy Weekly</option>
+          <option value="Monthly">Buy Monthly</option>
         </select>
-        <a href="#" onclick="goToPaymentPage('Starter+')">Buy</a>
       </div>
 
       <!-- Advanced Plan -->
@@ -145,11 +134,11 @@
         <h2>Advanced</h2>
         <p><strong>RAM:</strong> 1024 MB<br><strong>CPU:</strong> 50%<br><strong>Storage:</strong> 3072 MB</p>
         <p><strong>Weekly:</strong> $6<br><strong>Monthly:</strong> $24</p>
-        <select id="advanced-plan-duration">
-          <option value="Weekly">Weekly - $6</option>
-          <option value="Monthly">Monthly - $24</option>
+        <select onchange="goToPaymentPage('Advanced', this.value)">
+          <option value="">Select Duration</option>
+          <option value="Weekly">Buy Weekly</option>
+          <option value="Monthly">Buy Monthly</option>
         </select>
-        <a href="#" onclick="goToPaymentPage('Advanced')">Buy</a>
       </div>
 
       <!-- Advanced+ Plan -->
@@ -157,11 +146,11 @@
         <h2>Advanced+</h2>
         <p><strong>RAM:</strong> 2048 MB<br><strong>CPU:</strong> 100%<br><strong>Storage:</strong> 4096 MB</p>
         <p><strong>Weekly:</strong> $12<br><strong>Monthly:</strong> $48</p>
-        <select id="advanced-plus-plan-duration">
-          <option value="Weekly">Weekly - $12</option>
-          <option value="Monthly">Monthly - $48</option>
+        <select onchange="goToPaymentPage('Advanced+', this.value)">
+          <option value="">Select Duration</option>
+          <option value="Weekly">Buy Weekly</option>
+          <option value="Monthly">Buy Monthly</option>
         </select>
-        <a href="#" onclick="goToPaymentPage('Advanced+')">Buy</a>
       </div>
 
       <!-- Pro Plan -->
@@ -169,11 +158,11 @@
         <h2>Pro</h2>
         <p><strong>RAM:</strong> 4096 MB<br><strong>CPU:</strong> 150%<br><strong>Storage:</strong> 6124 MB</p>
         <p><strong>Weekly:</strong> $20<br><strong>Monthly:</strong> $80</p>
-        <select id="pro-plan-duration">
-          <option value="Weekly">Weekly - $20</option>
-          <option value="Monthly">Monthly - $80</option>
+        <select onchange="goToPaymentPage('Pro', this.value)">
+          <option value="">Select Duration</option>
+          <option value="Weekly">Buy Weekly</option>
+          <option value="Monthly">Buy Monthly</option>
         </select>
-        <a href="#" onclick="goToPaymentPage('Pro')">Buy</a>
       </div>
 
       <!-- Pro+ Plan -->
@@ -181,27 +170,26 @@
         <h2>Pro+</h2>
         <p><strong>RAM:</strong> 6144 MB<br><strong>CPU:</strong> 200%<br><strong>Storage:</strong> 6124 MB</p>
         <p><strong>Weekly:</strong> $30<br><strong>Monthly:</strong> $120</p>
-        <select id="pro-plus-plan-duration">
-          <option value="Weekly">Weekly - $30</option>
-          <option value="Monthly">Monthly - $120</option>
+        <select onchange="goToPaymentPage('Pro+', this.value)">
+          <option value="">Select Duration</option>
+          <option value="Weekly">Buy Weekly</option>
+          <option value="Monthly">Buy Monthly</option>
         </select>
-        <a href="#" onclick="goToPaymentPage('Pro+')">Buy</a>
       </div>
     </div>
   </div>
 
   <script>
-    // Function to navigate to the payment page with selected item
-    function goToPaymentPage(item) {
-      // Get selected duration from the dropdown
-      let planDuration = document.querySelector(`#${item.toLowerCase().replace('+', '-')}-plan-duration`).value;
+    // Function to navigate to the payment page with selected item and duration
+    function goToPaymentPage(item, duration) {
+      if (duration) {
+        // Store values in localStorage
+        localStorage.setItem('selectedItem', item);
+        localStorage.setItem('selectedDuration', duration);
 
-      // Store values in localStorage
-      localStorage.setItem('selectedItem', item);
-      localStorage.setItem('selectedDuration', planDuration);
-
-      // Redirect to Pay.html page
-      window.location.href = "Pay.html";  // Ensure Pay.html is in the same folder or provide the correct path
+        // Redirect to Pay.html page
+        window.location.href = "Pay.html";  // Ensure Pay.html is in the same folder or provide the correct path
+      }
     }
   </script>
 
