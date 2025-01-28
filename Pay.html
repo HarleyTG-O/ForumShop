@@ -189,13 +189,11 @@
   </div>
 
   <script>
-    // Retrieve selected item, duration, and price from localStorage and display them
+ // Retrieve selected item and price from localStorage and display them
     let selectedItem = localStorage.getItem('selectedItem');
-    let selectedDuration = localStorage.getItem('selectedDuration');
     let selectedPrice = localStorage.getItem('selectedPrice');
 
-    document.getElementById('item').innerText = selectedItem || 'Starter+';
-    document.getElementById('duration').innerText = selectedDuration || 'Weekly';
+    document.getElementById('item').innerText = selectedItem || 'No Item Selected';
     document.getElementById('price').innerText = selectedPrice || 'Not selected';
 
     // Function to generate a random Customer ID
