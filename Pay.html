@@ -157,8 +157,17 @@
       <p>Price: <span id="price">Not selected</span></p>
     </div>
 
-    <!-- Payment Form -->
-    <div class="card payment-form">
+    <!-- Payment Options -->
+    <div class="card">
+      <h3>Select Payment Method</h3>
+      <input type="radio" id="cashAppOption" name="paymentMethod" value="cashApp" onclick="togglePaymentMethod()" checked>
+      <label for="cashAppOption">Cash App</label>
+      <input type="radio" id="koFiOption" name="paymentMethod" value="koFi" onclick="togglePaymentMethod()">
+      <label for="koFiOption">Ko-fi</label>
+    </div>
+
+    <!-- Cash App Payment Form -->
+    <div class="card payment-form" id="cashAppForm">
       <p>To verify your payment, please enter this <strong>Customer ID</strong> into your Cash App transaction note:</p>
       <input type="text" id="customerId" readonly required>
       <p>Please include this Customer ID when you make your payment. This helps us verify your transaction.</p>
@@ -167,6 +176,13 @@
       </p>
       <button type="button" onclick="generateCustomerId()">Generate New Customer ID</button>
       <button id="payCompletedBtn" class="payment-form-button" onclick="unlockPaymentForm()">Pay Completed</button>
+    </div>
+
+    <!-- Ko-fi Payment Form -->
+    <div class="card payment-form" id="koFiForm" style="display: none;">
+      <h3>Support via Ko-fi</h3>
+      <p>If you prefer, you can make a one-time payment through Ko-fi:</p>
+      <iframe id='kofiframe' src='https://ko-fi.com/harleytg/?hidefeed=true&widget=true&embed=true&preview=true' style='border:none;width:100%;padding:4px;background:#f9f9f9;' height='712' title='harleytg'></iframe>
     </div>
 
     <!-- Payment details form (Initially hidden) -->
@@ -189,7 +205,7 @@
   </div>
 
   <script>
- // Retrieve selected item and price from localStorage and display them
+    // Retrieve selected item and price from localStorage and display them
     let selectedItem = localStorage.getItem('selectedItem');
     let selectedPrice = localStorage.getItem('selectedPrice');
 
@@ -255,7 +271,20 @@
         alert('An error occurred while sending your payment details. Please try again later.');
       }
     }
+
+    // Toggle between Cash App and Ko-fi payment forms
+    function togglePaymentMethod() {
+      const cashAppForm = document.getElementById('cashAppForm');
+      const koFiForm = document.getElementById('koFiForm');
+
+      if (document.getElementById('cashAppOption').checked) {
+        cashAppForm.style.display = 'block';
+        koFiForm.style.display = 'none';
+      } else {
+        cashAppForm.style.display = 'none';
+        koFiForm.style.display = 'block';
+      }
+    }
   </script>
 
 </body>
-</html>
