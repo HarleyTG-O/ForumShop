@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Harley's Hosting Plans</title>
+  <title>Harley's VIP Memberships</title>
   <link rel="icon" href="Images/HTG.png" type="image/png">
   <style>
     body {
@@ -53,12 +53,6 @@
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
     }
 
-    .plan-card img {
-      max-width: 100%;
-      height: auto;
-      margin-bottom: 15px;
-    }
-
     .plan-card h2 {
       font-size: 1.5rem;
       margin-bottom: 10px;
@@ -105,83 +99,43 @@
   <div class="container">
     <h1>
         <img src="Images/HTG.png" alt="Logo" style="height: 40px; vertical-align: middle; margin-right: 10px;">
-        Harley's Services - Bot Hosting Rental
+        Harley's VIP Memberships
       </h1>
     <p style="text-align: center; margin-bottom: 30px; font-size: 1.1rem; color: #ccc;">
-      Select the perfect hosting plan for your needs.
+      Choose the perfect membership plan for your exclusive benefits.
     </p>
 
     <div class="plan-section">
-      <!-- Starter Plan -->
+      <!-- VIP Plan -->
       <div class="plan-card">
-        <h2>Starter</h2>
-        <p><strong>RAM:</strong> 256 MB<br><strong>CPU:</strong> 20%<br><strong>Storage:</strong> 1024 MB</p>
-        <p><strong>Weekly:</strong> $1.50<br><strong>Monthly:</strong> $6</p>
-        <select onchange="goToPaymentPage('Starter', this.value)">
-          <option value="">Select Duration</option>
-          <option value="Weekly">Buy Weekly</option>
-          <option value="Monthly">Buy Monthly</option>
-        </select>
+        <h2>Harley's VIP</h2>
+        <p><strong>Price:</strong> $5 per month</p>
+        <p><strong>Benefits:</strong><br>Forum Badge: VIP Member<br>Access to VIP Membership Zone<br>Discord Role: VIP Member</p>
+        <p><strong>Subscribe via Ko-fi</strong><br>or send payment to Cash App: $HarleyTGO</p>
       </div>
 
-      <!-- Starter+ Plan -->
+      <!-- Plus Plan -->
       <div class="plan-card">
-        <h2>Starter+</h2>
-        <p><strong>RAM:</strong> 512 MB<br><strong>CPU:</strong> 25%<br><strong>Storage:</strong> 2048 MB</p>
-        <p><strong>Weekly:</strong> $3.50<br><strong>Monthly:</strong> $14</p>
-        <select onchange="goToPaymentPage('Starter+', this.value)">
-          <option value="">Select Duration</option>
-          <option value="Weekly">Buy Weekly</option>
-          <option value="Monthly">Buy Monthly</option>
-        </select>
+        <h2>Harley's Plus (+)</h2>
+        <p><strong>Price:</strong> $10 per month</p>
+        <p><strong>Benefits:</strong><br>Forum Badge: Plus Member<br>Access to Plus Membership Zone<br>Exclusive Discord Role: Plus Member<br>Special Plus-only Discord Channels</p>
+        <p><strong>Subscribe via Ko-fi</strong><br>or send payment to Cash App: $HarleyTGO</p>
       </div>
 
-      <!-- Advanced Plan -->
+      <!-- Elite Plan -->
       <div class="plan-card">
-        <h2>Advanced</h2>
-        <p><strong>RAM:</strong> 1024 MB<br><strong>CPU:</strong> 50%<br><strong>Storage:</strong> 3072 MB</p>
-        <p><strong>Weekly:</strong> $6<br><strong>Monthly:</strong> $24</p>
-        <select onchange="goToPaymentPage('Advanced', this.value)">
-          <option value="">Select Duration</option>
-          <option value="Weekly">Buy Weekly</option>
-          <option value="Monthly">Buy Monthly</option>
-        </select>
+        <h2>Harley's Elite</h2>
+        <p><strong>Price:</strong> $15 per month</p>
+        <p><strong>Benefits:</strong><br>Forum Badge: Elite Member<br>Access to Elite Membership Zone<br>Exclusive Discord Role: Elite Member<br>Priority Support on Forum<br>Access to Exclusive Discord Events</p>
+        <p><strong>Subscribe via Ko-fi</strong><br>or send payment to Cash App: $HarleyTGO</p>
       </div>
 
-      <!-- Advanced+ Plan -->
+      <!-- Omega Plan -->
       <div class="plan-card">
-        <h2>Advanced+</h2>
-        <p><strong>RAM:</strong> 2048 MB<br><strong>CPU:</strong> 100%<br><strong>Storage:</strong> 4096 MB</p>
-        <p><strong>Weekly:</strong> $12<br><strong>Monthly:</strong> $48</p>
-        <select onchange="goToPaymentPage('Advanced+', this.value)">
-          <option value="">Select Duration</option>
-          <option value="Weekly">Buy Weekly</option>
-          <option value="Monthly">Buy Monthly</option>
-        </select>
-      </div>
-
-      <!-- Pro Plan -->
-      <div class="plan-card">
-        <h2>Pro</h2>
-        <p><strong>RAM:</strong> 4096 MB<br><strong>CPU:</strong> 150%<br><strong>Storage:</strong> 6124 MB</p>
-        <p><strong>Weekly:</strong> $20<br><strong>Monthly:</strong> $80</p>
-        <select onchange="goToPaymentPage('Pro', this.value)">
-          <option value="">Select Duration</option>
-          <option value="Weekly">Buy Weekly</option>
-          <option value="Monthly">Buy Monthly</option>
-        </select>
-      </div>
-
-      <!-- Pro+ Plan -->
-      <div class="plan-card">
-        <h2>Pro+</h2>
-        <p><strong>RAM:</strong> 6144 MB<br><strong>CPU:</strong> 200%<br><strong>Storage:</strong> 6124 MB</p>
-        <p><strong>Weekly:</strong> $30<br><strong>Monthly:</strong> $120</p>
-        <select onchange="goToPaymentPage('Pro+', this.value)">
-          <option value="">Select Duration</option>
-          <option value="Weekly">Buy Weekly</option>
-          <option value="Monthly">Buy Monthly</option>
-        </select>
+        <h2>Harley's Omega</h2>
+        <p><strong>Price:</strong> $25 per month</p>
+        <p><strong>Benefits:</strong><br>Forum Badge: Omega Member<br>Access to All Membership Zones<br>Exclusive Discord Role: Omega Member<br>Custom Discord Role (Name & Color)<br>Early Access to Forum Features<br>Monthly Shoutout in Forum & Discord</p>
+        <p><strong>Subscribe via Ko-fi</strong><br>or send payment to Cash App: $HarleyTGO</p>
       </div>
     </div>
   </div>
