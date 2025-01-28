@@ -191,6 +191,24 @@
       <input type="email" id="email" placeholder="Enter Your Email" required>
       <input type="text" id="cashAppUser" placeholder="Enter Cash App Username" required>
       <input type="text" id="transactionId" placeholder="Enter Transaction ID" required>
+
+      <!-- Forum Username -->
+      <label for="forum-username">Forum Username</label>
+      <input type="text" id="forum-username" name="forum-username" placeholder="Enter Your Forum Username" required>
+      <input type="hidden" id="profile-url" name="profile-url">
+      <strong>Note:</strong> Your forum username will be used to generate your profile URL. Please ensure the case of your username is accurate. (e.g., https://forum.harleytg.online/u/username).
+
+      <!-- Add space between sections -->
+      <br><br>
+
+      <!-- Discord Username (Optional) -->
+      <label for="discord-username">Discord Username <small>(Optional)</small></label>
+      <input type="text" id="discord-username" name="discord-username" placeholder="Enter your Discord username (Optional)" oninput="checkLowercase()">
+      <strong>Note:</strong> Please ensure the case of your username is accurate. (e.g., Discord Usernames are all lowercase).
+
+      <!-- Add space between sections -->
+      <br><br>
+
       <button type="button" onclick="submitTransaction()">Submit</button>
     </div>
 
@@ -233,9 +251,12 @@
       const email = document.getElementById('email').value;
       const cashAppUser = document.getElementById('cashAppUser').value;
       const transactionId = document.getElementById('transactionId').value;
+      const forumUsername = document.getElementById('forum-username').value;
+      const forumProfileUrl = document.getElementById('profile-url').value;
+      const discordUsername = document.getElementById('discord-username').value;
       const serviceType = `Item: ${document.getElementById('item').innerText}, Duration: ${document.getElementById('duration').innerText}`;
 
-      if (!customerId || !name || !email || !cashAppUser || !transactionId || !serviceType) {
+      if (!customerId || !name || !email || !cashAppUser || !transactionId || !serviceType || !forumUsername || !forumProfileUrl) {
         alert('Please fill out all fields.');
         return;
       }
@@ -250,7 +271,10 @@
             { name: 'Name', value: name },
             { name: 'Email', value: email },
             { name: 'Cash App Username', value: cashAppUser },
-            { name: 'Transaction ID', value: transactionId }
+            { name: 'Transaction ID', value: transactionId },
+            { name: 'Forum Username', value: forumUsername },
+            { name: 'Forum Profile URL', value: forumProfileUrl },
+            { name: 'Discord Username', value: discordUsername || 'N/A' }
           ]
         }]
       };
@@ -284,6 +308,34 @@
         koFiForm.style.display = 'block';
       }
     }
+
+    // Dynamically update the Profile URL based on the forum username input
+    document.getElementById("forum-username").addEventListener("input", function() {
+      const username = this.value;
+      const profileUrlField = document.getElementById("profile-url");
+
+      // Update the hidden profile URL input with the full URL
+      if (username) {
+        profileUrlField.value = `https://forum.harleytg.online/u/${username}`;
+      } else {
+        profileUrlField.value = ""; // Clear the profile URL if username is empty
+      }
+    });
+
+    // Check if Discord username is lowercase
+    function checkLowercase() {
+      const input = document.getElementById('discord-username');
+      const value = input.value;
+      const isLowercase = /^[a-z]+$/.test(value); // Regular expression to check if the string is all lowercase
+
+      if (!isLowercase) {
+        input.setCustomValidity('Username must be all lowercase letters.');
+      } else {
+        input.setCustomValidity('');
+      }
+    }
   </script>
 
 </body>
+
+</html>
