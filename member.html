@@ -115,7 +115,7 @@
         <p><strong>Price:</strong> $5 per month</p>
         <p><strong>Benefits:</strong><br>Forum Badge: VIP Member<br>Access to VIP Membership Zone<br>Discord Role: VIP Member</p>
         <p><strong>Subscribe via Ko-fi</strong><br>or send payment to Cash App: $HarleyTGO</p>
-        <button class="select-button" onclick="goToPaymentPage('Harley\'s VIP')">Select</button>
+        <button class="select-button" onclick="goToPaymentPage('Harley\'s VIP', 5)">Select</button>
       </div>
 
       <!-- Plus Plan -->
@@ -124,7 +124,7 @@
         <p><strong>Price:</strong> $10 per month</p>
         <p><strong>Benefits:</strong><br>Forum Badge: Plus Member<br>Access to Plus Membership Zone<br>Exclusive Discord Role: Plus Member<br>Special Plus-only Discord Channels</p>
         <p><strong>Subscribe via Ko-fi</strong><br>or send payment to Cash App: $HarleyTGO</p>
-        <button class="select-button" onclick="goToPaymentPage('Harley\'s Plus (+)')">Select</button>
+        <button class="select-button" onclick="goToPaymentPage('Harley\'s Plus (+)', 10)">Select</button>
       </div>
 
       <!-- Elite Plan -->
@@ -133,7 +133,7 @@
         <p><strong>Price:</strong> $15 per month</p>
         <p><strong>Benefits:</strong><br>Forum Badge: Elite Member<br>Access to Elite Membership Zone<br>Exclusive Discord Role: Elite Member<br>Priority Support on Forum<br>Access to Exclusive Discord Events</p>
         <p><strong>Subscribe via Ko-fi</strong><br>or send payment to Cash App: $HarleyTGO</p>
-        <button class="select-button" onclick="goToPaymentPage('Harley\'s Elite')">Select</button>
+        <button class="select-button" onclick="goToPaymentPage('Harley\'s Elite', 15)">Select</button>
       </div>
 
       <!-- Omega Plan -->
@@ -142,16 +142,17 @@
         <p><strong>Price:</strong> $25 per month</p>
         <p><strong>Benefits:</strong><br>Forum Badge: Omega Member<br>Access to All Membership Zones<br>Exclusive Discord Role: Omega Member<br>Custom Discord Role (Name & Color)<br>Early Access to Forum Features<br>Monthly Shoutout in Forum & Discord</p>
         <p><strong>Subscribe via Ko-fi</strong><br>or send payment to Cash App: $HarleyTGO</p>
-        <button class="select-button" onclick="goToPaymentPage('Harley\'s Omega')">Select</button>
+        <button class="select-button" onclick="goToPaymentPage('Harley\'s Omega', 25)">Select</button>
       </div>
     </div>
   </div>
 
   <script>
-    // Function to navigate to the payment page with selected item
-    function goToPaymentPage(item) {
+    // Function to navigate to the payment page with selected item and price
+    function goToPaymentPage(item, price) {
       // Store values in localStorage
       localStorage.setItem('selectedItem', item);
+      localStorage.setItem('selectedPrice', price);
 
       // Redirect to Pay.html page
       window.location.href = "Pay.html";  // Ensure Pay.html is in the same folder or provide the correct path
