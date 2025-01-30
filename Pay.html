@@ -243,17 +243,6 @@
   </div>
 
 <script>
-      // Auto load duration from localStorage
-    const storedDuration = localStorage.getItem('Duration');
-    if (storedDuration) {
-      document.getElementById('duration').innerText = storedDuration;
-    }
-    // Generate a random Customer ID
-    function generateCustomerId() {
-      const customerId = Math.random().toString(36).substr(2, 8).toUpperCase();
-      document.getElementById('customerId').value = customerId;
-    }
-  
     // Automatically generate a Customer ID on page load
     generateCustomerId();
   
