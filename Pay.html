@@ -166,6 +166,7 @@
       <input type="radio" id="koFiOption" name="paymentMethod" value="koFi" onclick="togglePaymentMethod()">
       <label for="koFiOption">Ko-fi</label>
     </div>
+
     <!-- Cash App Payment Form -->
     <div class="card payment-form" id="cashAppForm">
       <p>To verify your payment, please enter this <strong>Customer ID</strong> into your Cash App transaction note:</p>
@@ -296,7 +297,7 @@
       }
     }
 
- // Toggle between payment methods
+  // Toggle between payment methods
     function togglePaymentMethod() {
       const cashAppForm = document.getElementById('cashAppForm');
       const koFiForm = document.getElementById('koFiForm');
@@ -316,7 +317,6 @@
         paymentDetails.style.display = 'none';
       }
     }
-
 
     // Dynamically update the Profile URL based on the forum username input
     document.getElementById("forum-username").addEventListener("input", function() {
