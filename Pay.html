@@ -151,7 +151,11 @@
     <div class="card">
       <h3>Selected Details</h3>
       <p>Item: <span id="item">Starter+</span></p>
-      <p>Duration: <span>Monthly</span></p>
+      <p>Duration: <span id="duration">Monthly</span></p>
+      
+      <!-- Input for manual duration entry -->
+      <label for="durationInput">Select Duration:</label>
+      <input type="text" id="durationInput" value="Monthly">
       <p>Price: <span id="price">Not selected</span></p>
       <p>Quantity: <span id="quantity">1</span></p>
     </div>
@@ -345,12 +349,10 @@
     window.onload = function() {
       // Load previously saved item details and update the page
       let storedItem = localStorage.getItem('selectedItem');
-      let duration = localStorage.getItem('Duration');
       let storedPrice = localStorage.getItem('selectedPrice');
       let storedQuantity = localStorage.getItem('quantity');
 
       if (storedItem) document.getElementById('item').innerText = storedItem;
-      if (storedItem) document.getElementById('duration').innerText = duration;
       if (storedPrice) document.getElementById('price').innerText = storedPrice;
       if (storedQuantity) document.getElementById('quantity').innerText = storedQuantity; // Fix the quantity display
       document.getElementById('giftForm').style.display = document.getElementById('giftOption').checked ? 'block' : 'none';
