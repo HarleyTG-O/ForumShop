@@ -243,20 +243,18 @@
   </div>
 
 <script>
-  // Function to toggle visibility of gift form
-  function toggleGiftForm() {
-    const giftForm = document.getElementById('giftForm');
-    giftForm.style.display = document.getElementById('giftOption').checked ? 'block' : 'none';
-  }
 
-  // Set default quantity from localStorage (if set from another page)
-  const quantity = localStorage.getItem('quantity') || 1; // Default to 1 if not set
-  document.getElementById('quantity').innerText = quantity;
+  // Load values from localStorage and display them
+  window.onload = function() {
+    const selectedItem = localStorage.getItem('selectedItem') || "No item selected";
+    const selectedPrice = localStorage.getItem('selectedPrice') || "Not selected";
+    const quantity = localStorage.getItem('quantity') || 1;
 
-  // Set price based on quantity
-  const pricePerItem = 20; // Example price per item
-  const totalPrice = pricePerItem * quantity;
-  document.getElementById('price').innerText = `$${totalPrice}`;
+    // Update the page with values from localStorage
+    document.getElementById('item').innerText = selectedItem;
+    document.getElementById('price').innerText = selectedPrice;
+    document.getElementById('quantity').innerText = quantity;
+  };
 
   // Function to generate a random Customer ID
   function generateCustomerId() {
@@ -289,18 +287,7 @@
       alert("Please fill in all required fields.");
     }
   }
-
-  // Store values in localStorage for selected item, price, and quantity
-  function goToPaymentPage(item, price, quantity) {
-    // Calculate total price
-    const totalPrice = price * quantity;
-
-    // Store values in localStorage
-    localStorage.setItem('selectedItem', item);
-    localStorage.setItem('selectedPrice', `$${totalPrice}`);
-    localStorage.setItem('quantity', quantity);
-
-    // Redirect to Pay.html page
-    window.location.href = "Pay.html";
-  }
 </script>
+
+</body>
+</html>
