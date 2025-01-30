@@ -91,9 +91,10 @@
     }
 
     .quantity-input {
-      width: 100%;
-      padding: 8px;
+      width: 50%; /* Make it smaller */
+      padding: 6px;
       margin-top: 10px;
+      font-size: 1rem;
     }
 
     @media (max-width: 600px) {
@@ -121,7 +122,7 @@
         <p><strong>Price:</strong> $5 per month</p>
         <p><strong>Benefits:</strong><br>Forum Badge: VIP Member<br>Access to VIP Membership Zone<br>Discord Role: VIP Member</p>
         <p><strong>Subscribe via Ko-fi</strong><br>or send payment to Cash App: $HarleyTGO</p>
-        <input type="number" id="vipQuantity" class="quantity-input" value="1" min="1" readonly>
+        <input type="number" id="vipQuantity" class="quantity-input" value="1" min="1">
         <button class="select-button" onclick="goToPaymentPage('Harley\'s VIP', 5, document.getElementById('vipQuantity').value)">Select</button>
       </div>
 
@@ -131,7 +132,7 @@
         <p><strong>Price:</strong> $10 per month</p>
         <p><strong>Benefits:</strong><br>Forum Badge: Plus Member<br>Access to Plus Membership Zone<br>Exclusive Discord Role: Plus Member<br>Special Plus-only Discord Channels</p>
         <p><strong>Subscribe via Ko-fi</strong><br>or send payment to Cash App: $HarleyTGO</p>
-        <input type="number" id="plusQuantity" class="quantity-input" value="1" min="1" readonly>
+        <input type="number" id="plusQuantity" class="quantity-input" value="1" min="1">
         <button class="select-button" onclick="goToPaymentPage('Harley\'s Plus (+)', 10, document.getElementById('plusQuantity').value)">Select</button>
       </div>
 
@@ -141,7 +142,7 @@
         <p><strong>Price:</strong> $15 per month</p>
         <p><strong>Benefits:</strong><br>Forum Badge: Elite Member<br>Access to Elite Membership Zone<br>Exclusive Discord Role: Elite Member<br>Priority Support on Forum<br>Access to Exclusive Discord Events</p>
         <p><strong>Subscribe via Ko-fi</strong><br>or send payment to Cash App: $HarleyTGO</p>
-        <input type="number" id="eliteQuantity" class="quantity-input" value="1" min="1" readonly>
+        <input type="number" id="eliteQuantity" class="quantity-input" value="1" min="1">
         <button class="select-button" onclick="goToPaymentPage('Harley\'s Elite', 15, document.getElementById('eliteQuantity').value)">Select</button>
       </div>
 
@@ -151,7 +152,7 @@
         <p><strong>Price:</strong> $25 per month</p>
         <p><strong>Benefits:</strong><br>Forum Badge: Omega Member<br>Access to All Membership Zones<br>Exclusive Discord Role: Omega Member<br>Custom Discord Role (Name & Color)<br>Early Access to Forum Features<br>Monthly Shoutout in Forum & Discord</p>
         <p><strong>Subscribe via Ko-fi</strong><br>or send payment to Cash App: $HarleyTGO</p>
-        <input type="number" id="omegaQuantity" class="quantity-input" value="1" min="1" readonly>
+        <input type="number" id="omegaQuantity" class="quantity-input" value="1" min="1">
         <button class="select-button" onclick="goToPaymentPage('Harley\'s Omega', 25, document.getElementById('omegaQuantity').value)">Select</button>
       </div>
     </div>
