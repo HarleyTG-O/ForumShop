@@ -168,7 +168,7 @@
     </div>
 
     <!-- Cash App Payment Form -->
-    <div class="card payment-form" id="cashAppForm">
+    <div class="card payment-form" id="cashAppForm" style="display: none;">
       <p>To verify your payment, please enter this <strong>Customer ID</strong> into your Cash App transaction note:</p>
       <input type="text" id="customerId" readonly required>
       <p>Please include this Customer ID when you make your payment. This helps us verify your transaction.</p>
@@ -178,6 +178,7 @@
       <button type="button" onclick="generateCustomerId()">Generate New Customer ID</button>
       <button id="payCompletedBtn" class="payment-form-button" onclick="unlockPaymentForm()">Pay Completed</button>
     </div>
+
 
     <!-- Ko-fi Payment Form -->
     <div class="card payment-form" id="koFiForm" style="display: none;">
