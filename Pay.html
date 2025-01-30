@@ -242,55 +242,65 @@
     </div>
   </div>
 
-  <script>
-    // Function to toggle visibility of gift form
-    function toggleGiftForm() {
-      const giftForm = document.getElementById('giftForm');
-      giftForm.style.display = document.getElementById('giftOption').checked ? 'block' : 'none';
+<script>
+  // Function to toggle visibility of gift form
+  function toggleGiftForm() {
+    const giftForm = document.getElementById('giftForm');
+    giftForm.style.display = document.getElementById('giftOption').checked ? 'block' : 'none';
+  }
+
+  // Set default quantity from localStorage (if set from another page)
+  const quantity = localStorage.getItem('quantity') || 1; // Default to 1 if not set
+  document.getElementById('quantity').innerText = quantity;
+
+  // Set price based on quantity
+  const pricePerItem = 20; // Example price per item
+  const totalPrice = pricePerItem * quantity;
+  document.getElementById('price').innerText = `$${totalPrice}`;
+
+  // Function to generate a random Customer ID
+  function generateCustomerId() {
+    const customerId = Math.random().toString(36).substr(2, 8).toUpperCase();
+    document.getElementById('customerId').value = customerId;
+  }
+
+  // Toggle payment form visibility
+  function togglePaymentMethod() {
+    const selectedMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+    document.getElementById('cashAppForm').style.display = selectedMethod === 'cashApp' ? 'block' : 'none';
+    document.getElementById('koFiForm').style.display = selectedMethod === 'koFi' ? 'block' : 'none';
+  }
+
+  // Unlock Payment Form button after completion
+  function unlockPaymentForm() {
+    document.getElementById('paymentDetails').style.display = 'block';
+  }
+
+  // Function to submit transaction
+  function submitTransaction() {
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const cashAppUser = document.getElementById('cashAppUser').value;
+    const transactionId = document.getElementById('transactionId').value;
+
+    if (name && email && cashAppUser && transactionId) {
+      document.getElementById('overlay').style.display = 'block';
+    } else {
+      alert("Please fill in all required fields.");
     }
+  }
 
-    // Set default quantity from localStorage (if set from another page)
-    const quantity = localStorage.getItem('quantity') || 1; // Default to 1 if not set
-    document.getElementById('quantity').innerText = quantity;
+  // Store values in localStorage for selected item, price, and quantity
+  function goToPaymentPage(item, price, quantity) {
+    // Calculate total price
+    const totalPrice = price * quantity;
 
-    // Set price based on quantity
-    const pricePerItem = 20; // Example price per item
-    const totalPrice = pricePerItem * quantity;
-    document.getElementById('price').innerText = `$${totalPrice}`;
+    // Store values in localStorage
+    localStorage.setItem('selectedItem', item);
+    localStorage.setItem('selectedPrice', `$${totalPrice}`);
+    localStorage.setItem('quantity', quantity);
 
-    // Function to generate a random Customer ID
-    function generateCustomerId() {
-      const customerId = Math.random().toString(36).substr(2, 8).toUpperCase();
-      document.getElementById('customerId').value = customerId;
-    }
-
-    // Toggle payment form visibility
-    function togglePaymentMethod() {
-      const selectedMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
-      document.getElementById('cashAppForm').style.display = selectedMethod === 'cashApp' ? 'block' : 'none';
-      document.getElementById('koFiForm').style.display = selectedMethod === 'koFi' ? 'block' : 'none';
-    }
-
-    // Unlock Payment Form button after completion
-    function unlockPaymentForm() {
-      document.getElementById('paymentDetails').style.display = 'block';
-    }
-
-    // Function to submit transaction
-    function submitTransaction() {
-      const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
-      const cashAppUser = document.getElementById('cashAppUser').value;
-      const transactionId = document.getElementById('transactionId').value;
-
-      if (name && email && cashAppUser && transactionId) {
-        document.getElementById('overlay').style.display = 'block';
-      } else {
-        alert("Please fill in all required fields.");
-      }
-    }
-
-  </script>
-
-</body>
-</html>
+    // Redirect to Pay.html page
+    window.location.href = "Pay.html";
+  }
+</script>
