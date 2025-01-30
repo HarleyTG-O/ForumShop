@@ -243,7 +243,6 @@
   </div>
 
 <script>
-
   // Load values from localStorage and display them
   window.onload = function() {
     const selectedItem = localStorage.getItem('selectedItem') || "No item selected";
@@ -280,11 +279,46 @@
     const email = document.getElementById('email').value;
     const cashAppUser = document.getElementById('cashAppUser').value;
     const transactionId = document.getElementById('transactionId').value;
+    const forumUsername = document.getElementById('forum-username').value;
+    const discordUsername = document.getElementById('discord-username').value;
 
+    // Check if required fields are filled out
     if (name && email && cashAppUser && transactionId) {
-      document.getElementById('overlay').style.display = 'block';
+        // Prepare the data to be sent to the webhook
+        const data = {
+            name: name,
+            email: email,
+            cashAppUser: cashAppUser,
+            transactionId: transactionId,
+            forumUsername: forumUsername,
+            discordUsername: discordUsername || "Not provided",
+            selectedItem: localStorage.getItem('selectedItem'),
+            selectedPrice: localStorage.getItem('selectedPrice'),
+            quantity: localStorage.getItem('quantity')
+        };
+
+        // Send the data to the webhook
+        const webhookURL = 'YOUR_WEBHOOK_URL'; // Replace with your actual webhook URL
+        fetch(webhookURL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            // If the webhook response is successful, show a success message
+            console.log('Transaction submitted successfully:', data);
+            document.getElementById('overlay').style.display = 'block';
+        })
+        .catch(error => {
+            // Handle any errors
+            console.error('Error submitting transaction:', error);
+            alert("There was an error submitting your transaction.");
+        });
     } else {
-      alert("Please fill in all required fields.");
+        alert("Please fill in all required fields.");
     }
   }
 </script>
