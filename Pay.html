@@ -148,7 +148,7 @@
 
     <p style="text-align: center; color: #ccc;">Please follow the instructions below to complete your payment.</p>
 
-    <!-- Combined Selected Item, Duration, and Price Card -->
+   <!-- Combined Selected Item, Duration, and Price Card -->
     <div class="card">
       <h3>Selected Details</h3>
       <p>Item: <span id="item">Starter+</span></p>
@@ -167,6 +167,21 @@
       <label for="koFiOption">Ko-fi</label>
     </div>
 
+    <!-- Gifting Option -->
+    <div class="card">
+      <h3>Gifting Option</h3>
+      <input type="checkbox" id="giftOption" onclick="toggleGiftForm()">
+      <label for="giftOption">Gift this service/item to someone else</label>
+    </div>
+
+    <!-- Gifting Form -->
+    <div class="card payment-form" id="giftForm" style="display: none;">
+      <h3>Recipient's Details</h3>
+      <input type="text" id="recipientName" placeholder="Enter Recipient's Name" required>
+      <input type="email" id="recipientEmail" placeholder="Enter Recipient's Email" required>
+      <input type="text" id="recipientDiscord" placeholder="Enter Recipient's Discord Username (Optional)">
+    </div>
+
     <!-- Cash App Payment Form -->
     <div class="card payment-form" id="cashAppForm" style="display: none;">
       <p>To verify your payment, please enter this <strong>Customer ID</strong> into your Cash App transaction note:</p>
@@ -179,7 +194,6 @@
       <button id="payCompletedBtn" class="payment-form-button" onclick="unlockPaymentForm()">Pay Completed</button>
     </div>
 
-
     <!-- Ko-fi Payment Form -->
     <div class="card payment-form" id="koFiForm" style="display: none;">
       <h3>Support via Ko-fi</h3>
@@ -187,13 +201,16 @@
       <iframe id='kofiframe' src='https://ko-fi.com/harleytg/?hidefeed=true&widget=true&embed=true&preview=true' style='border:none;width:100%;padding:4px;background:#f9f9f9;' height='712' title='harleytg'></iframe>
     </div>
 
-    <!-- Payment details form (Initially hidden) -->
+  <!-- Payment details form (Initially hidden) -->
     <div class="card payment-form" id="paymentDetails" style="display: none;">
       <p>Enter your payment details below and press the button to continue:</p>
       <input type="text" id="name" placeholder="Enter Your Name" required>
       <input type="email" id="email" placeholder="Enter Your Email" required>
       <input type="text" id="cashAppUser" placeholder="Enter Cash App Username" required>
       <input type="text" id="transactionId" placeholder="Enter Transaction ID" required>
+
+      <!-- Add space between sections -->
+      <br><br>
 
       <!-- Forum Username -->
       <label for="forum-username">Forum Username</label>
@@ -225,6 +242,12 @@
   </div>
 
   <script>
+    // Function to toggle visibility of gift form
+    function toggleGiftForm() {
+      const giftForm = document.getElementById('giftForm');
+      giftForm.style.display = document.getElementById('giftOption').checked ? 'block' : 'none';
+    }
+
     // Retrieve selected item and price from localStorage and display them
     let selectedItem = localStorage.getItem('selectedItem');
     let selectedPrice = localStorage.getItem('selectedPrice');
@@ -257,6 +280,9 @@
       const forumUsername = document.getElementById('forum-username').value;
       const forumProfileUrl = document.getElementById('profile-url').value;
       const discordUsername = document.getElementById('discord-username').value;
+      const recipientName = document.getElementById('recipientName').value;
+      const recipientEmail = document.getElementById('recipientEmail').value;
+      const recipientDiscord = document.getElementById('recipientDiscord').value;
       const serviceType = `Item: ${document.getElementById('item').innerText}, Duration: ${document.getElementById('duration').innerText}`;
 
       if (!customerId || !name || !email || !cashAppUser || !transactionId || !serviceType || !forumUsername || !forumProfileUrl) {
@@ -277,7 +303,10 @@
             { name: 'Transaction ID', value: transactionId },
             { name: 'Forum Username', value: forumUsername },
             { name: 'Forum Profile URL', value: forumProfileUrl },
-            { name: 'Discord Username', value: discordUsername || 'N/A' }
+            { name: 'Discord Username', value: discordUsername || 'N/A' },
+            { name: 'Recipient Name', value: recipientName || 'N/A' },
+            { name: 'Recipient Email', value: recipientEmail || 'N/A' },
+            { name: 'Recipient Discord', value: recipientDiscord || 'N/A' }
           ]
         }]
       };
@@ -298,7 +327,7 @@
       }
     }
 
-  // Toggle between payment methods
+    // Toggle between payment methods
     function togglePaymentMethod() {
       const cashAppForm = document.getElementById('cashAppForm');
       const koFiForm = document.getElementById('koFiForm');
@@ -318,7 +347,7 @@
         paymentDetails.style.display = 'none';
       }
     }
-
+    
     // Dynamically update the Profile URL based on the forum username input
     document.getElementById("forum-username").addEventListener("input", function() {
       const username = this.value;
@@ -345,6 +374,7 @@
       }
     }
   </script>
+
 
 </body>
 
