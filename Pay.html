@@ -247,16 +247,7 @@
     const storedDuration = localStorage.getItem('Duration');
     if (storedDuration) {
       document.getElementById('duration').innerText = storedDuration;
-      document.getElementById('durationInput').value = storedDuration;
     }
-
-    // Update localStorage when the user changes the duration
-    document.getElementById('durationInput').addEventListener('input', function() {
-      const duration = this.value;
-      localStorage.setItem('Duration', duration);
-      document.getElementById('duration').innerText = duration;
-    });
-  
     // Generate a random Customer ID
     function generateCustomerId() {
       const customerId = Math.random().toString(36).substr(2, 8).toUpperCase();
