@@ -342,6 +342,18 @@
     function toggleGiftForm() {
       document.getElementById('giftForm').style.display = document.getElementById('giftOption').checked ? 'block' : 'none';
     }
+
+     window.onload = function() {
+      // Load previously saved item details and update the page
+      let storedItem = localStorage.getItem('selectedItem');
+      let storedDuration = localStorage.getItem('selectedDuration');
+      let storedPrice = localStorage.getItem('selectedPrice');
+      let storedQuantity = localStorage.getItem('selectedQuantity');
+
+      if (storedItem) document.getElementById('item').innerText = storedItem;
+      if (storedDuration) document.getElementById('duration').innerText = storedDuration;
+      if (storedPrice) document.getElementById('price').innerText = storedPrice;
+      if (storedQuantity) document.getElementById('quantity').innerText = storedQuantity;
   </script>
   </body>
   </html>
