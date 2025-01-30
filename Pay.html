@@ -154,8 +154,7 @@
       <p>Item: <span id="item">Starter+</span></p>
       <p>Duration: <span id="duration">Monthly</span></p>
       <p>Price: <span id="price">Not selected</span></p>
-      <label for="quantity">Quantity: </label>
-      <input type="number" id="quantity" name="quantity" value="1" min="1" style="width: 50px;">
+      <p>Quantity: <span id="quantity">1</span></p>
     </div>
 
     <!-- Payment Options -->
@@ -250,12 +249,14 @@
       giftForm.style.display = document.getElementById('giftOption').checked ? 'block' : 'none';
     }
 
-    // Retrieve selected item and price from localStorage and display them
-    let selectedItem = localStorage.getItem('selectedItem');
-    let selectedPrice = localStorage.getItem('selectedPrice');
+    // Set default quantity from localStorage (if set from another page)
+    const quantity = localStorage.getItem('quantity') || 1; // Default to 1 if not set
+    document.getElementById('quantity').innerText = quantity;
 
-    document.getElementById('item').innerText = selectedItem || 'No Item Selected';
-    document.getElementById('price').innerText = selectedPrice || 'Not selected';
+    // Set price based on quantity
+    const pricePerItem = 20; // Example price per item
+    const totalPrice = pricePerItem * quantity;
+    document.getElementById('price').innerText = `$${totalPrice}`;
 
     // Function to generate a random Customer ID
     function generateCustomerId() {
@@ -289,13 +290,6 @@
       }
     }
 
-    // Update the price when the quantity changes
-    document.getElementById('quantity').addEventListener('input', function() {
-      const quantity = parseInt(document.getElementById('quantity').value);
-      const pricePerItem = 20; // Example price per item (change this based on your pricing logic)
-      const totalPrice = quantity * pricePerItem;
-      document.getElementById('price').innerText = `$${totalPrice}`;
-    });
   </script>
 
 </body>
