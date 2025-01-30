@@ -238,7 +238,7 @@
     </div>
   </div>
 
-  <script>
+<script>
     // Loading values from localStorage
     const selectedItem = localStorage.getItem('selectedItem');
     const selectedPrice = localStorage.getItem('selectedPrice');
@@ -259,52 +259,55 @@
       document.getElementById('payCompletedBtn').style.display = 'none';
     }
   
- // Submit transaction and send data to Discord webhook
- function submitTransaction() {
-    const customerId = document.getElementById('customerId').value;
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const cashAppUser = document.getElementById('cashAppUser').value;
-    const transactionId = document.getElementById('transactionId').value;
-    const forumUsername = document.getElementById('forum-username').value;
-    const discordUsername = document.getElementById('discord-username').value;
-    const recipientName = document.getElementById('recipient-name').value;
-    const recipientEmail = document.getElementById('recipient-email').value;
-    const recipientDiscord = document.getElementById('recipient-discord').value;
-    const isGift = document.getElementById('giftOption').checked ? 'Yes' : 'No'; // Gifting Option status
+    // Submit transaction and send data to Discord webhook
+    function submitTransaction() {
+      const customerId = document.getElementById('customerId').value;
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const cashAppUser = document.getElementById('cashAppUser').value;
+      const transactionId = document.getElementById('transactionId').value;
+      const forumUsername = document.getElementById('forum-username').value;
+      const discordUsername = document.getElementById('discord-username').value;
+      const recipientName = document.getElementById('recipient-name').value;
+      const recipientEmail = document.getElementById('recipient-email').value;
+      const recipientDiscord = document.getElementById('recipient-discord').value;
+      const isGift = document.getElementById('giftOption').checked ? 'Yes' : 'No'; // Gifting Option status
+      const selectedQuantity = document.getElementById('quantity').innerText; // Get quantity from the displayed field
   
-    const payload = {
-      customerId,
-      name,
-      email,
-      cashAppUser,
-      transactionId,
-      forumUsername,
-      discordUsername,
-      recipientName,
-      recipientEmail,
-      recipientDiscord,
-      isGift // Add the Gifting Option status
-    };
+      const payload = {
+        customerId,
+        name,
+        email,
+        cashAppUser,
+        transactionId,
+        forumUsername,
+        discordUsername,
+        recipientName,
+        recipientEmail,
+        recipientDiscord,
+        isGift, // Add the Gifting Option status
+        quantity: selectedQuantity // Add the quantity to the payload
+      };
   
-    // Formatting the payload as an embed for Discord
-    const embed = {
-      title: "New Payment Transaction",
-      color: 3066993, // Light blue color
-      fields: [
-        { name: "Customer ID", value: customerId, inline: true },
-        { name: "Name", value: name, inline: true },
-        { name: "Email", value: email, inline: true },
-        { name: "Cash App Username", value: cashAppUser, inline: true },
-        { name: "Transaction ID", value: transactionId, inline: true },
-        { name: "Forum Username", value: forumUsername, inline: true },
-        { name: "Discord Username", value: discordUsername, inline: true },
-        { name: "Recipient Name", value: recipientName || 'N/A', inline: true },
-        { name: "Recipient Email", value: recipientEmail || 'N/A', inline: true },
-        { name: "Recipient Discord Username", value: recipientDiscord || 'N/A', inline: true },
-        { name: "Gifting Option", value: isGift, inline: true } // Add Gifting Option status to embed
-      ]
-    };
+      // Formatting the payload as an embed for Discord
+      const embed = {
+        title: "New Payment Transaction",
+        color: 3066993, // Light blue color
+        fields: [
+          { name: "Customer ID", value: customerId, inline: true },
+          { name: "Name", value: name, inline: true },
+          { name: "Email", value: email, inline: true },
+          { name: "Cash App Username", value: cashAppUser, inline: true },
+          { name: "Transaction ID", value: transactionId, inline: true },
+          { name: "Forum Username", value: forumUsername, inline: true },
+          { name: "Discord Username", value: discordUsername, inline: true },
+          { name: "Recipient Name", value: recipientName || 'N/A', inline: true },
+          { name: "Recipient Email", value: recipientEmail || 'N/A', inline: true },
+          { name: "Recipient Discord Username", value: recipientDiscord || 'N/A', inline: true },
+          { name: "Gifting Option", value: isGift, inline: true },
+          { name: "Quantity", value: selectedQuantity, inline: true } // Add Quantity to the embed
+        ]
+      };
   
       // Webhook URL (replace with your actual webhook)
       const webhookUrl = "https://discord.com/api/webhooks/1334548946730881056/Bxqdk7ebqpKGjqm1R1AiVe27LeQu_Uu8aRiZf_qYP3TUDeC6_4NkVKu_nJ5IjjEUcTxf";
@@ -343,19 +346,20 @@
       document.getElementById('giftForm').style.display = document.getElementById('giftOption').checked ? 'block' : 'none';
     }
 
-     window.onload = function() {
+    window.onload = function() {
       // Load previously saved item details and update the page
       let storedItem = localStorage.getItem('selectedItem');
       let storedDuration = localStorage.getItem('selectedDuration');
       let storedPrice = localStorage.getItem('selectedPrice');
-      let storedQuantity = localStorage.getItem('selectedQuantity');
+      let storedQuantity = localStorage.getItem('quantity');
 
       if (storedItem) document.getElementById('item').innerText = storedItem;
       if (storedDuration) document.getElementById('duration').innerText = storedDuration;
       if (storedPrice) document.getElementById('price').innerText = storedPrice;
-      if (storedQuantity) document.getElementById('quantity').innerText = storedQuantity;
+      if (storedQuantity) document.getElementById('quantity').innerText = storedQuantity; // Fix the quantity display
       document.getElementById('giftForm').style.display = document.getElementById('giftOption').checked ? 'block' : 'none';
     }
-  </script>
+</script>
+
 </body>
 </html>
