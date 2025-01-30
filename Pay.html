@@ -335,17 +335,27 @@
       document.getElementById('giftForm').style.display = document.getElementById('giftOption').checked ? 'block' : 'none';
     }
 
-    window.onload = function() {
-      // Load previously saved item details and update the page
-      let storedItem = localStorage.getItem('selectedItem');
-      let storedPrice = localStorage.getItem('selectedPrice');
-      let storedQuantity = localStorage.getItem('quantity');
+window.onload = function() {
+  // Load previously saved item details and update the page
+  let storedItem = localStorage.getItem('selectedItem');
+  let storedPrice = localStorage.getItem('selectedPrice');
+  let storedQuantity = localStorage.getItem('quantity');
 
-      if (storedItem) document.getElementById('item').innerText = storedItem;
-      if (storedPrice) document.getElementById('price').innerText = storedPrice;
-      if (storedQuantity) document.getElementById('quantity').innerText = storedQuantity; // Fix the quantity display
-      document.getElementById('giftForm').style.display = document.getElementById('giftOption').checked ? 'block' : 'none';
-    }
+  // Update the page with stored values, if they exist
+  if (storedItem) {
+    document.getElementById('item').innerText = storedItem;
+  }
+  if (storedPrice) {
+    document.getElementById('price').innerText = storedPrice;
+  }
+  if (storedQuantity) {
+    document.getElementById('quantity').innerText = storedQuantity;
+  }
+
+  // Check if the gifting option is selected and display the gift form accordingly
+  document.getElementById('giftForm').style.display = document.getElementById('giftOption').checked ? 'block' : 'none';
+}
+
 </script>
 
 </body>
