@@ -159,12 +159,13 @@
     <!-- Payment Options -->
     <div class="card">
       <h3>Select Payment Method</h3>
-      <input type="radio" id="cashAppOption" name="paymentMethod" value="cashApp" onclick="togglePaymentMethod()" checked>
+      <input type="radio" id="noneOption" name="paymentMethod" value="none" onclick="togglePaymentMethod()" checked>
+      <label for="noneOption">None</label>
+      <input type="radio" id="cashAppOption" name="paymentMethod" value="cashApp" onclick="togglePaymentMethod()">
       <label for="cashAppOption">Cash App</label>
       <input type="radio" id="koFiOption" name="paymentMethod" value="koFi" onclick="togglePaymentMethod()">
       <label for="koFiOption">Ko-fi</label>
     </div>
-
     <!-- Cash App Payment Form -->
     <div class="card payment-form" id="cashAppForm">
       <p>To verify your payment, please enter this <strong>Customer ID</strong> into your Cash App transaction note:</p>
@@ -295,19 +296,27 @@
       }
     }
 
-    // Toggle between Cash App and Ko-fi payment forms
+ // Toggle between payment methods
     function togglePaymentMethod() {
       const cashAppForm = document.getElementById('cashAppForm');
       const koFiForm = document.getElementById('koFiForm');
+      const paymentDetails = document.getElementById('paymentDetails');
 
       if (document.getElementById('cashAppOption').checked) {
         cashAppForm.style.display = 'block';
         koFiForm.style.display = 'none';
-      } else {
+        paymentDetails.style.display = 'none';
+      } else if (document.getElementById('koFiOption').checked) {
         cashAppForm.style.display = 'none';
         koFiForm.style.display = 'block';
+        paymentDetails.style.display = 'none';
+      } else {
+        cashAppForm.style.display = 'none';
+        koFiForm.style.display = 'none';
+        paymentDetails.style.display = 'none';
       }
     }
+
 
     // Dynamically update the Profile URL based on the forum username input
     document.getElementById("forum-username").addEventListener("input", function() {
