@@ -345,12 +345,12 @@
     window.onload = function() {
       // Load previously saved item details and update the page
       let storedItem = localStorage.getItem('selectedItem');
-      let storedDuration = localStorage.getItem('selectedDuration');
+      let duration = localStorage.getItem('Duration');
       let storedPrice = localStorage.getItem('selectedPrice');
       let storedQuantity = localStorage.getItem('quantity');
 
       if (storedItem) document.getElementById('item').innerText = storedItem;
-      if (storedDuration) document.getElementById('duration').innerText = storedDuration;
+      if (storedItem) document.getElementById('duration').innerText = duration;
       if (storedPrice) document.getElementById('price').innerText = storedPrice;
       if (storedQuantity) document.getElementById('quantity').innerText = storedQuantity; // Fix the quantity display
       document.getElementById('giftForm').style.display = document.getElementById('giftOption').checked ? 'block' : 'none';
