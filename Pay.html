@@ -239,6 +239,11 @@
   </div>
 
   <script>
+    // Loading values from localStorage
+    const selectedItem = localStorage.getItem('selectedItem');
+    const selectedPrice = localStorage.getItem('selectedPrice');
+    const quantity = localStorage.getItem('quantity');
+    
     // Generate a random Customer ID
     function generateCustomerId() {
       const customerId = Math.random().toString(36).substr(2, 8).toUpperCase();
