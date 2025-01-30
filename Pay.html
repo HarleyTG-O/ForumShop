@@ -209,27 +209,16 @@
       <input type="email" id="email" placeholder="Enter Your Email" required>
       <input type="text" id="cashAppUser" placeholder="Enter Cash App Username" required>
       <input type="text" id="transactionId" placeholder="Enter Transaction ID" required>
-
-      <!-- Add space between sections -->
       <br><br>
-
-      <!-- Forum Username -->
       <label for="forum-username">Forum Username</label>
       <input type="text" id="forum-username" name="forum-username" placeholder="Enter Your Forum Username" required>
       <input type="hidden" id="profile-url" name="profile-url">
       <strong>Note:</strong> Your forum username will be used to generate your profile URL. Please ensure the case of your username is accurate. (e.g., https://forum.harleytg.online/u/username). 
-
-      <!-- Add space between sections -->
       <br><br>
-
-      <!-- Discord Username (Optional) -->
       <label for="discord-username">Discord Username <small>(Optional)</small></label>
-      <input type="text" id="discord-username" name="discord-username" placeholder="Enter your Discord username (Optional)" oninput="checkLowercase()">
+      <input type="text" id="discord-username" name="discord-username" placeholder="Enter your Discord username (Optional)">
       <strong>Note:</strong> Please ensure the case of your username is accurate. (e.g., Discord Usernames are all lowercase).
-
-      <!-- Add space between sections -->
       <br><br>
-
       <button type="button" onclick="submitTransaction()">Submit</button>
     </div>
 
@@ -266,6 +255,12 @@
     const selectedMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
     document.getElementById('cashAppForm').style.display = selectedMethod === 'cashApp' ? 'block' : 'none';
     document.getElementById('koFiForm').style.display = selectedMethod === 'koFi' ? 'block' : 'none';
+  }
+
+  // Toggle gift form visibility
+  function toggleGiftForm() {
+    const giftOption = document.getElementById('giftOption').checked;
+    document.getElementById('giftForm').style.display = giftOption ? 'block' : 'none';
   }
 
   // Unlock Payment Form button after completion
