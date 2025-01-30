@@ -128,6 +128,7 @@
     #overlay-content button:hover {
       background-color: #0056b3;
     }
+
   </style>
 </head>
 <body>
@@ -147,12 +148,14 @@
 
     <p style="text-align: center; color: #ccc;">Please follow the instructions below to complete your payment.</p>
 
-    <!-- Combined Selected Item, Duration, and Price Card -->
+   <!-- Combined Selected Item, Duration, Price, and Quantity Card -->
     <div class="card">
       <h3>Selected Details</h3>
       <p>Item: <span id="item">Starter+</span></p>
       <p>Duration: <span id="duration">Monthly</span></p>
       <p>Price: <span id="price">Not selected</span></p>
+      <label for="quantity">Quantity: </label>
+      <input type="number" id="quantity" name="quantity" value="1" min="1" style="width: 50px;">
     </div>
 
     <!-- Payment Options -->
@@ -200,7 +203,7 @@
       <iframe id='kofiframe' src='https://ko-fi.com/harleytg/?hidefeed=true&widget=true&embed=true&preview=true' style='border:none;width:100%;padding:4px;background:#f9f9f9;' height='712' title='harleytg'></iframe>
     </div>
 
-    <!-- Payment details form (Initially hidden) -->
+  <!-- Payment details form (Initially hidden) -->
     <div class="card payment-form" id="paymentDetails" style="display: none;">
       <p>Enter your payment details below and press the button to continue:</p>
       <input type="text" id="name" placeholder="Enter Your Name" required>
@@ -215,7 +218,7 @@
       <label for="forum-username">Forum Username</label>
       <input type="text" id="forum-username" name="forum-username" placeholder="Enter Your Forum Username" required>
       <input type="hidden" id="profile-url" name="profile-url">
-      <strong>Note:</strong> Your forum username will be used to generate your profile URL. Please ensure the case of your username is accurate. (e.g., https://forum.harleytg.online/u/username).
+      <strong>Note:</strong> Your forum username will be used to generate your profile URL. Please ensure the case of your username is accurate. (e.g., https://forum.harleytg.online/u/username). 
 
       <!-- Add space between sections -->
       <br><br>
@@ -260,82 +263,40 @@
       document.getElementById('customerId').value = customerId;
     }
 
-    // Automatically generate a Customer ID on page load
-    generateCustomerId();
-
-    // Unlock the payment details form when "Pay Completed" button is clicked
-    function unlockPaymentForm() {
-      document.getElementById('paymentDetails').style.display = 'block';
-      document.getElementById('payCompletedBtn').style.display = 'none';
+    // Toggle payment form visibility
+    function togglePaymentMethod() {
+      const selectedMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+      document.getElementById('cashAppForm').style.display = selectedMethod === 'cashApp' ? 'block' : 'none';
+      document.getElementById('koFiForm').style.display = selectedMethod === 'koFi' ? 'block' : 'none';
     }
 
-    // Function to submit payment details
-    async function submitTransaction() {
-      const customerId = document.getElementById('customerId').value;
+    // Unlock Payment Form button after completion
+    function unlockPaymentForm() {
+      document.getElementById('paymentDetails').style.display = 'block';
+    }
+
+    // Function to submit transaction
+    function submitTransaction() {
       const name = document.getElementById('name').value;
       const email = document.getElementById('email').value;
       const cashAppUser = document.getElementById('cashAppUser').value;
       const transactionId = document.getElementById('transactionId').value;
-      const forumUsername = document.getElementById('forum-username').value;
-      const forumProfileUrl = document.getElementById('profile-url').value;
-      const discordUsername = document.getElementById('discord-username').value;
-      const recipientName = document.getElementById('recipientName').value;
-      const recipientEmail = document.getElementById('recipientEmail').value;
-      const recipientDiscord = document.getElementById('recipientDiscord').value;
-      const serviceType = `Item: ${document.getElementById('item').innerText}, Duration: ${document.getElementById('duration').innerText}`;
 
-      if (!customerId || !name || !email || !cashAppUser || !transactionId || !serviceType || !forumUsername || !forumProfileUrl) {
-        alert('Please fill out all fields.');
-        return;
+      if (name && email && cashAppUser && transactionId) {
+        document.getElementById('overlay').style.display = 'block';
+      } else {
+        alert("Please fill in all required fields.");
       }
-
-      const paymentDetails = {
-        content: 'Payment Received',
-        embeds: [{
-          title: `Payment Details for ${name}`,
-          fields: [
-            { name: 'Customer ID', value: customerId },
-            { name: 'Service Type', value: serviceType },
-            { name: 'Name', value: name },
-            { name: 'Email', value: email },
-            { name: 'Cash App Username', value: cashAppUser },
-            { name: 'Transaction ID', value: transactionId },
-            { name: 'Forum Username', value: forumUsername },
-            { name: 'Forum Profile URL', value: forumProfileUrl },
-            { name: 'Discord Username', value: discordUsername || 'N/A' },
-            { name: 'Recipient Name', value: recipientName || 'N/A' },
-            { name: 'Recipient Email', value: recipientEmail || 'N/A' },
-            { name: 'Recipient Discord', value: recipientDiscord || 'N/A' },
-          ]
-        }]
-      };
-
-      // Replace with your webhook URL
-      const webhookUrl = "https://discord.com/api/webhooks/1334548946730881056/Bxqdk7ebqpKGjqm1R1AiVe27LeQu_Uu8aRiZf_qYP3TUDeC6_4NkVKu_nJ5IjjEUcTxf";
-
-      await fetch(webhookUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(paymentDetails)
-      });
-
-      document.getElementById('overlay').style.display = 'block';
     }
 
-    // Function to check if Discord username is entered in lowercase
-    function checkLowercase() {
-      const discordUsername = document.getElementById('discord-username').value;
-      document.getElementById('discord-username').value = discordUsername.toLowerCase();
-    }
-
-    // Function to toggle payment method visibility
-    function togglePaymentMethod() {
-      const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
-      document.getElementById('cashAppForm').style.display = paymentMethod === 'cashApp' ? 'block' : 'none';
-      document.getElementById('koFiForm').style.display = paymentMethod === 'koFi' ? 'block' : 'none';
-    }
+    // Update the price when the quantity changes
+    document.getElementById('quantity').addEventListener('input', function() {
+      const quantity = parseInt(document.getElementById('quantity').value);
+      const pricePerItem = 20; // Example price per item (change this based on your pricing logic)
+      const totalPrice = quantity * pricePerItem;
+      document.getElementById('price').innerText = `$${totalPrice}`;
+    });
   </script>
+
 </body>
 </html>
