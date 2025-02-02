@@ -239,6 +239,28 @@
   </div>
 
 <script>
+ // Retrieve selected item and price from localStorage and display them
+    let selectedItem = localStorage.getItem('selectedItem');
+    let selectedPrice = localStorage.getItem('selectedPrice');
+
+    document.getElementById('item').innerText = selectedItem || 'No Item Selected';
+    document.getElementById('price').innerText = selectedPrice || 'Not selected';
+
+    // Function to generate a random Customer ID
+    function generateCustomerId() {
+      const customerId = Math.random().toString(36).substr(2, 8).toUpperCase();
+      document.getElementById('customerId').value = customerId;
+    }
+
+    // Automatically generate a Customer ID on page load
+    generateCustomerId();
+
+    // Unlock the payment details form when "Pay Completed" button is clicked
+    function unlockPaymentForm() {
+      document.getElementById('paymentDetails').style.display = 'block';
+      document.getElementById('payCompletedBtn').style.display = 'none';
+    }
+  
     // Automatically generate a Customer ID on page load
     generateCustomerId();
   
